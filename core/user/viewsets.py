@@ -6,7 +6,7 @@ from core.user.models import User
 
 class UserViewSet(viewsets.ModelViewSet):
     http_method_names = ('patch', 'get')
-    permission_classes = (AllowAny)
+    permission_classes = (AllowAny,)
     serializer_class = UserSerializer
 
     def get_queryset(self):
