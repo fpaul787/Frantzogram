@@ -7,7 +7,7 @@ from rest_framework import status
 
 
 class PostViewSet(AbstractViewSet):
-    http_method_names = ('post', 'get')
+    http_method_names = ('post', 'get', 'put', 'delete')
     permission_classes = (IsAuthenticated,)
     serializer_class = PostSerializer
 
@@ -20,6 +20,12 @@ class PostViewSet(AbstractViewSet):
         )
         self.check_object_permissions(self.request, obj)
         return obj
+    
+    def update(self, instance, validated_data):
+        if not instance.edited:
+            validated_data['edited'] = True
+        instance = super().update(instance, validated_data)
+        return instance
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
