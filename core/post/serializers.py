@@ -48,5 +48,5 @@ class PostSerializer(AbstractSerializer):
         # List of all the fields that can be included in a
         # request or a response
         fields = ['id', 'author', 'body', 'edited', 'created', 'updated', 
-                  'liked', 'liked_count']
+                  'liked', 'likes_count']
         read_only_fields = ['edited']
