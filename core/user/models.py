@@ -58,12 +58,15 @@ class User(AbstractModel, AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(db_index=True, unique=True)
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=True)
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
     objects = UserManager()
     posts_liked = models.ManyToManyField(
         'core_post.Post',
         related_name='liked_by'
+    )
+    comments_liked = models.ManyToManyField(
+        "core_comment.Comment", related_name="commented_by"
     )
 
     def __str__(self):
