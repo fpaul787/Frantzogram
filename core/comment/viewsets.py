@@ -29,18 +29,7 @@ class CommentViewSet(AbstractViewSet):
         )
         self.check_object_permissions(self.request, obj)
         return obj
-    
-    def validate_post(self, value):
-        if self.instance:
-            return self.instance.post
-        return value
-    
-    def update(self, instance, validated_data):
-        if not instance.edited:
-            validated_data['edited'] = True
-        instance = super().update(instance, validated_data)
 
-        return instance
     
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
