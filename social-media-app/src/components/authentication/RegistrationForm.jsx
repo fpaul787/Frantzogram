@@ -26,7 +26,7 @@ function RegistrationForm() {
     };
 
     axios
-    .post("http://localhost:8000/api/auth/register", data)
+    .post("http://localhost:8000/api/auth/register/", data)
     .then((res) => {
         // Registering the account and tokens in the
         // store
