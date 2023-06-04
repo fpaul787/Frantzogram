@@ -3,7 +3,7 @@ from core.user.viewsets import UserViewSet
 from core.auth.viewsets import RegisterViewSet, LoginViewSet, RefreshViewSet
 from core.post.viewsets import PostViewSet
 from core.comment.viewsets import CommentViewSet
-router = routers.SimpleRouter()
+router = routers.SimpleRouter(trailing_slash=False)
 
 # ##################################################################### #
 # ################### USER                       ###################### #
