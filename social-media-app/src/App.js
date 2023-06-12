@@ -4,6 +4,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import Home from './pages/Home';
 import './App.css';
 import Registration from './pages/Registration';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Home />
         </ProtectedRoute>
       } />
-      <Route path="/login/" element={<div>Login</div>}></Route>
+      <Route path="/login/" element={<Login />}></Route>
       <Route path="/register/" element={<Registration />} />
     </Routes>
   );
