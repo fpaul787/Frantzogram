@@ -23,7 +23,6 @@ axoisService.interceptors.response.use(
 );
 
 const refreshAuthLogic = async (failedRequest) => {
-    const { refresh } = JSON.parse(localStorage.getItem("auth"));
     return axios
     .post("/refresh/token/", null, {
         baseURL: "http://localhost:8000",
