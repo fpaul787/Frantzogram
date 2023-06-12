@@ -21,12 +21,12 @@ function useUserActions() {
   }
 
   // Register the user
-  function register(data){
+  function register(data) {
     return axios.post(`${baseURL}/auth/register/`, data).then((res) => {
       // Registering the account and tokens in the store
       setUserData(res.data);
       navigate("/");
-    })
+    });
   }
 
   // Logout the user
@@ -67,9 +67,9 @@ function setUserData(data) {
 }
 
 export {
-    useUserActions,
-    getUser, 
-    setUserData,
-    getAccessToken,
-    getRefreshToken
+  useUserActions,
+  getUser,
+  setUserData,
+  getAccessToken,
+  getRefreshToken,
 };
