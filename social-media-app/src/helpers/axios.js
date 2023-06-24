@@ -13,7 +13,7 @@ axoisService.interceptors.request.use(async (config) => {
      * Retrieving the access token from localStorage
      * and adding it to the headers of the request
      */
-    config.headers.Authorization = `Bearer ${getAccessToken}`;
+    config.headers.Authorization = `Bearer ${getAccessToken()}`;
     return config;
 })
 
@@ -24,7 +24,7 @@ axoisService.interceptors.response.use(
 
 const refreshAuthLogic = async (failedRequest) => {
     return axios
-    .post("/refresh/token/", null, {
+    .post("/refresh/token", null, {
         baseURL: "http://localhost:8000",
         headers: {
             Authorization: `Bearer ${getRefreshToken()}`
