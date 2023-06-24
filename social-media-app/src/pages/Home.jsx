@@ -5,9 +5,12 @@ import { randomAvatar } from "../utils";
 import useSWR from "swr";
 import { fetcher } from "../helpers/axios";
 import { getUser } from "../hooks/user.actions";
-import CreatePost from "../components/posts/CreatePost";
+import { Post, CreatePost } from "../components/posts";
 
 export default function Home() {
+  const posts = useSWR("/api/post", fetcher, {
+    refreshInterval: 10000,
+  });
   const user = getUser();
 
   if (!user) {
@@ -30,6 +33,11 @@ export default function Home() {
             <Col sm={10} className="flex-grow-1">
               <CreatePost />
             </Col>
+          </Row>
+          <Row className="my-4">
+            {posts.data?.results.map((post, index) => (
+              <Post key={index} post={post} refresh={posts.mutate}></Post>
+            ))}
           </Row>
         </Col>
       </Row>
