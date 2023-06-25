@@ -4,7 +4,8 @@ import axiosService from "../../helpers/axios";
 import { getUser } from '../../hooks/user.actions';
 import Toaster from '../Toaster';
 
-export default function CreatePost() {
+export default function CreatePost(props) {
+    const { refresh } = props;
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -32,10 +33,11 @@ export default function CreatePost() {
             .post("api/post", data)
             .then(() => {
                 handleClose();
-                setToastMessage("Post created 🚀");
-                setToastType("success");
+                // setToastMessage("Post created 🚀");
+                // setToastType("success");
                 setForm({});
                 setShowToast(true);
+                refresh();
             })
             .catch((error) => {
                 setToastMessage("An error occurred.");
@@ -81,14 +83,6 @@ export default function CreatePost() {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <Toaster
-                title="Post!"
-                message={toastMessage}
-                showToast={showToast}
-                type={toastType}
-                onClose={() => setShowToast(false)}
-            >
-            </Toaster>
         </>
     );
 };
